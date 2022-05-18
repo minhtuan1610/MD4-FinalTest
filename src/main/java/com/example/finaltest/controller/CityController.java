@@ -61,4 +61,14 @@ public class CityController {
         cityService.remove(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<City> findCityById(@PathVariable Long id) {
+        Optional<City> cityOptional = cityService.findById(id);
+        if (cityOptional.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        City city = cityOptional.get();
+        return new ResponseEntity<>(city, HttpStatus.FOUND);
+    }
 }
