@@ -1,7 +1,9 @@
 package com.example.finaltest.controller;
 
 import com.example.finaltest.model.City;
+import com.example.finaltest.model.Nation;
 import com.example.finaltest.service.city.ICityService;
+import com.example.finaltest.service.nation.INationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,14 @@ import java.util.Optional;
 public class CityController {
     @Autowired
     ICityService cityService;
+    @Autowired
+    INationService nationService;
+
+    @GetMapping("/nations")
+    public ResponseEntity<Iterable<Nation>> displayNation() {
+        Iterable<Nation> nations = nationService.findAll();
+        return new ResponseEntity<>(nations, HttpStatus.OK);
+    }
 
     @GetMapping("")
     public ResponseEntity<Iterable<City>> listAllCity() {
