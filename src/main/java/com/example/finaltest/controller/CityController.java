@@ -68,6 +68,6 @@ public class CityController {
         if (cityOptional.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(cityOptional.get(), HttpStatus.FOUND);
+        return new ResponseEntity<>(cityOptional.get(), HttpStatus.OK);
     }
 }
